@@ -33,6 +33,8 @@ func main() {
 	router := httprouter.New()
 
 	router.GET("/", taskController.Index)
+	router.GET("/create", taskController.Create)
+	router.POST("/create", taskController.Create)
 
 	fmt.Println("Starting web server at http://localhost" + port)
 	http.ListenAndServe(port, router)

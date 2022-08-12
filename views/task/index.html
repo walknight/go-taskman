@@ -18,8 +18,14 @@ Task Manager | Golang
 {{end}}
 
 {{define "content"}}
-<div class="container">
+<div class="container mt-4">
     <div class="row">
+        <h1>Task Manager</h1>
+        <div class="d-flex justify-content-start">
+            <div class="col-3">
+                <a href="/create" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Create Task</a>
+            </div>
+        </div>
         <div class="col-12">
             <div class="card border-info mt-3">
                 <div class="card-header">
@@ -37,13 +43,22 @@ Task Manager | Golang
                             </tr>
                         </thead>
                         <tbody>
+                            {{range $index, $task := .Tasks}}
                             <tr>
-                                <td>1</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>2022-08-12</td>
-                                <td>button</td>
+                                <td>{{$index}}</td>
+                                <td>{{$task.Description}}</td>
+                                <td>{{$task.Assignee}}</td>
+                                <td>{{$task.Date}}</td>
+                                <td>
+                                    {{if $task.IsDone}}
+                                    <span class="badge bg-success">Done</span>
+                                    {{else}}
+                                    <a href="" class="btn btn-warning btn-sm">Ubah</a>
+                                    <a href="" class="btn btn-info btn-sm">Selesai</a>
+                                    {{end}}
+                                </td>
                             </tr>
+                            {{end}}
                         </tbody>
                     </table>
                 </div>

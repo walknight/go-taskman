@@ -1,0 +1,56 @@
+{{define "title"}}
+Create Task | Golang
+{{end}}
+
+{{define "css"}}
+
+{{end}}
+
+{{define "script"}}
+
+{{end}}
+
+{{define "content"}}
+<div class="container mt-4">
+    <div class="row">
+        <h1>Create Task</h1>
+        <div class="d-flex justify-content-start">
+            <div class="col-3">
+                <a href="/" class="btn btn-secondary btn-sm"><i class="fa fa-chevron-left"></i> Kembali</a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card border-info mt-3">
+                <form action="" method="POST">
+                <div class="card-header">
+                    Form Task
+                </div>
+                <div class="card-body">
+                        <div class="mb-3 row">
+                            <label for="assignee" class="col-sm-2 col-form-label">Penerima</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="assignee" name="assignee" />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="date" class="col-sm-2 col-form-label">Deadline</label>
+                            <div class="col-sm-5">
+                                <input type="date" name="date" id="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
+                            <div class="col-sm-5">
+                                <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
