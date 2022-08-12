@@ -2,25 +2,39 @@ package main
 
 import (
 	"fmt"
-	"html/template"
+	"go-taskman/controllers"
+	"go-taskman/models"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		var data = map[string]string{
-			"Name":    "John Wick",
-			"Message": "Hello world!",
-		}
+	//port
+	port := ":8050"
+	//open database
+	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
+	//check error db
+	if err != nil {
+		panic("Terjadi kesalahan. Error : " + err.Error())
+	}
 
-		var t, err = template.ParseFiles("template/master.html")
-		if err != nil {
-			fmt.Println(err.Error())
-		}
+	//migrasi data struct model ke database schema
+	err = db.AutoMigrate(&models.Task{})
+	if err != nil {
+		panic("Terjadi kesalahan. Error : " + err.Error())
+	}
 
-		t.Execute(w, data)
-	})
+	//declare controller
+	taskController := &controllers.TaskController{}
 
-	fmt.Println("Starting web server at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	router := httprouter.New()
+
+	router.GET("/", taskController.Index)
+
+	fmt.Println("Starting web server at http://localhost" + port)
+	http.ListenAndServe(port, router)
+
 }

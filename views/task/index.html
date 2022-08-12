@@ -1,0 +1,54 @@
+{{define "title"}}
+Task Manager | Golang
+{{end}}
+
+{{define "css"}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+{{end}}
+
+{{define "script"}}
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#taskTable').DataTable()
+    })
+</script>
+{{end}}
+
+{{define "content"}}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-info mt-3">
+                <div class="card-header">
+                    Data Task
+                </div>
+                <div class="card-body">
+                    <table id="taskTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Task Name</th>
+                                <th>Assignee</th>
+                                <th>Deadline</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Test</td>
+                                <td>Test</td>
+                                <td>2022-08-12</td>
+                                <td>button</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
