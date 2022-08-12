@@ -8,5 +8,6 @@ Merupakan aplikasi task manager berbasis golang dengan database sqlite3. Aplikas
 3. Jalankan aplikasi
 
 
-## Changelog
-2022-08-08 : Initial commit
+## Changelogas
+2022-08-12 : add view, controller, models, dan DB Sqlite
+2022-08-08 : Initial commit2
