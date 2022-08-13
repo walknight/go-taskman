@@ -9,7 +9,7 @@ import (
 
 func main() {
 	//port
-	port := ":8050"
+	port := ":80"
 	//open database
 	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
 	//check error db
