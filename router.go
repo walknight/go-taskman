@@ -12,9 +12,12 @@ import (
 func initRouter(port string) {
 	//declare controller
 	taskController := &controllers.TaskController{}
+	pageController := &controllers.PageController{}
 
 	router := httprouter.New()
 
+	//set untuk bisa baca static folder css, js, image dari folder public
+	router.ServeFiles("/public/*filepath", http.Dir("public"))
 	router.GET("/", taskController.Index)
 	router.GET("/create", taskController.Create)
 	router.POST("/create", taskController.Create)
@@ -22,6 +25,7 @@ func initRouter(port string) {
 	router.POST("/update/:id", taskController.Update)
 	router.POST("/mark-as-done/:id", taskController.MarkAsDone)
 	router.POST("/delete/:id", taskController.Delete)
+	router.GET("/about", pageController.Index)
 
 	if port == "" {
 		port = "8050" // Default port if not specified

@@ -1,7 +1,7 @@
 {{ define "base" }}
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,16 +12,66 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
+    <link rel="stylesheet" href="/public/css/style.css">
     {{template "css" .}}
 </head>
 
-<body>
-   
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <div class="px-3 py-2 text-bg-light">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="#"
+                        class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-dark text-decoration-none">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg"
+                            alt="logo golang" width="100px">
+                        &nbsp;Tugas Individu GoLang Digitalent 2022
+                    </a>
+
+                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                        <li>
+                            <a href="/" class="nav-link text-secondary">
+                                <i class="fa fa-home"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about" class="nav-link text-secondary">
+                                <i class="fa fa-user"></i>
+                                About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
     {{template "content" .}}
 
+    <footer class="footer-bar bg-dark mt-auto py-3">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-sm-12 footer-bar">
+                    <div class="text-sm-left">
+                        <p class="mb-0 footer-text para-desc mx-auto">&copy; 2020. Design with <i
+                                class="fa fa-heart text-danger"></i> by <a
+                                href="https://www.bootdey.com/snippets/view/simple-footer" target="_blank"
+                                rel="noopener noreferrer">Bootdey</a>.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </footer>
+
     <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
@@ -29,7 +79,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
         crossorigin="anonymous"></script>
-    
+
     {{template "script" .}}
 </body>
 
