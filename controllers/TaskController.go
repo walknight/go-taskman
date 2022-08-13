@@ -189,3 +189,65 @@ func (controller *TaskController) Delete(w http.ResponseWriter, r *http.Request,
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
+
+func (controller *TaskController) Trash(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	//call database ORM
+	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Terjadi kesalahan database. Error : " + err.Error())
+	}
+	//set template
+	files := []string{
+		"./views/masterpage.html",
+		"./views/task/trash.html",
+	}
+	//handler template parse
+	htmlTemplate, err := template.ParseFiles(files...)
+	//set error if html parse error
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	//set map data tasks
+	var tasks []models.Task
+	//get table with
+	db.Unscoped().Where("deleted_at IS NOT NULL").Find(&tasks)
+
+	datas := map[string]interface{}{
+		"Tasks": tasks,
+	}
+
+	err = htmlTemplate.ExecuteTemplate(w, "base", datas)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println(err.Error())
+	}
+}
+
+func (controller *TaskController) DeleteTrash(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Terjadi kesalahan database. Error : " + err.Error())
+	}
+
+	var task models.Task
+	db.Unscoped().Where("deleted_at IS NOT NULL").Delete(&task)
+
+	http.Redirect(w, r, "/", http.StatusFound)
+}
+
+func (controller *TaskController) RestoreTask(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
+	if err != nil {
+		panic("Terjadi kesalahan database. Error : " + err.Error())
+	}
+	id := params.ByName("id")
+	var task models.Task
+	query := db.Unscoped().Where("id = ?", id).Find(&task).Update("deleted_at", nil)
+	if query.Error != nil {
+		log.Println(query.Error)
+	}
+	http.Redirect(w, r, "/", http.StatusFound)
+}

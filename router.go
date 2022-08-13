@@ -26,6 +26,9 @@ func initRouter(port string) {
 	router.POST("/mark-as-done/:id", taskController.MarkAsDone)
 	router.POST("/delete/:id", taskController.Delete)
 	router.GET("/about", pageController.Index)
+	router.GET("/trash", taskController.Trash)
+	router.POST("/delete-trash", taskController.DeleteTrash)
+	router.POST("/restore-task/:id", taskController.RestoreTask)
 
 	if port == "" {
 		port = "8050" // Default port if not specified
