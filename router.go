@@ -22,6 +22,10 @@ func initRouter(port string) {
 	router.POST("/mark-as-done/:id", taskController.MarkAsDone)
 	router.POST("/delete/:id", taskController.Delete)
 
+	if port == "" {
+		port = ":8050" // Default port if not specified
+	}
+
 	fmt.Println("Starting web server at http://localhost" + port)
 	http.ListenAndServe(port, router)
 }
