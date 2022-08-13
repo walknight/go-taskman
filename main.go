@@ -1,12 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"go-taskman/controllers"
 	"go-taskman/models"
-	"net/http"
 
-	"github.com/julienschmidt/httprouter"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -27,16 +23,6 @@ func main() {
 		panic("Terjadi kesalahan. Error : " + err.Error())
 	}
 
-	//declare controller
-	taskController := &controllers.TaskController{}
-
-	router := httprouter.New()
-
-	router.GET("/", taskController.Index)
-	router.GET("/create", taskController.Create)
-	router.POST("/create", taskController.Create)
-
-	fmt.Println("Starting web server at http://localhost" + port)
-	http.ListenAndServe(port, router)
+	initRouter(port)
 
 }

@@ -53,8 +53,13 @@ Task Manager | Golang
                                     {{if $task.IsDone}}
                                     <span class="badge bg-success">Done</span>
                                     {{else}}
-                                    <a href="" class="btn btn-warning btn-sm">Ubah</a>
-                                    <a href="" class="btn btn-info btn-sm">Selesai</a>
+                                    <a href="/edit/{{$task.ID}}" class="btn btn-warning btn-sm">Ubah</a>
+                                    <form class="d-inline" action="/mark-as-done/{{$task.ID}}" method="POST">
+                                        <button type="submit" class="btn btn-info btn-sm">Selesai</button>
+                                    </form>
+                                    <form class="d-inline" action="/delete/{{$task.ID}}" method="POST">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                     {{end}}
                                 </td>
                             </tr>
