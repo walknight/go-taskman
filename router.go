@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go-taskman/controllers"
+	"log"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -27,5 +28,5 @@ func initRouter(port string) {
 	}
 
 	fmt.Println("Starting web server at http://localhost:" + port)
-	http.ListenAndServe(":"+port, router)
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
