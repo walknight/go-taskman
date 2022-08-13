@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-taskman/models"
+	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -9,7 +10,7 @@ import (
 
 func main() {
 	//port
-	port := "80"
+	port := os.Getenv("PORT")
 	//open database
 	db, err := gorm.Open(sqlite.Open("db/db_task.db"), &gorm.Config{})
 	//check error db
